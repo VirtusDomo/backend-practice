@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.virtusdev.backend_practice.run.Location;
 import com.virtusdev.backend_practice.run.Run;
+import com.virtusdev.backend_practice.run.RunRepository;
 
 @SpringBootApplication
 public class Application {
@@ -22,12 +23,12 @@ public class Application {
 
 	}
 
-	@Bean
-	CommandLineRunner runner() {
-		return args -> {
-			Run run = new Run(1, "First Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.OUTDOOR);
-			log.info("Run:" + run);
-		};
-	}
+	// @Bean
+	// CommandLineRunner runner(RunRepository runRepository) {
+	// 	return args -> {
+	// 		Run run = new Run(1, "First Run", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), 5, Location.OUTDOOR);
+	// 		runRepository.create(run);
+	// 	};
+	// }
 
 }
