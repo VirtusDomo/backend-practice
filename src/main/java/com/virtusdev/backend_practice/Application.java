@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.virtusdev.backend_practice.run.Location;
 import com.virtusdev.backend_practice.run.Run;
-import com.virtusdev.backend_practice.run.RunRepository;
+import com.virtusdev.backend_practice.run.JdbcClientRunRepository;
 
 @SpringBootApplication
 public class Application {
