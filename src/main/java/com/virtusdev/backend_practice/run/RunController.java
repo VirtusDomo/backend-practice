@@ -27,9 +27,9 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/runs")
 class RunController {
 
-    private final JdbcRunRepository runRepository;
+    private final RunRepository runRepository;
 
-    RunController(JdbcRunRepository runRepository) {
+    RunController(RunRepository runRepository) {
         this.runRepository = runRepository;
     }
 

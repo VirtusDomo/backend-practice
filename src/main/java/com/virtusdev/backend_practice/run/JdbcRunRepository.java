@@ -23,7 +23,7 @@
      }
  
      public Optional<Run> findById(Integer id) {
-         return jdbcClient.sql("SELECT id,title,started_on,completed_on,miles,location FROM Run WHERE id = :id" )
+         return jdbcClient.sql("SELECT id,title,started_on,completed_on,miles,location,version FROM Run WHERE id = :id" )
                  .param("id", id)
                  .query(Run.class)
                  .optional();
@@ -58,7 +58,7 @@
      }
  
      public void saveAll(List<Run> runs) {
-         runs.stream().forEach(this::create);
+         runs.forEach(this::create);
      }
  
      public List<Run> findByLocation(String location) {
