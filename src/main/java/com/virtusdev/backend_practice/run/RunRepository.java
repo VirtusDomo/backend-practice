@@ -1,9 +1,11 @@
 package com.virtusdev.backend_practice.run;
 
+import com.virtusdev.backend_practice.common.GenericRepository;
+
 import java.util.List;
 import java.util.Optional;
 
-public interface RunRepository {
+public interface RunRepository extends GenericRepository<Run> {
 
     List<Run> findAll();
 

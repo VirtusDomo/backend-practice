@@ -10,3 +10,13 @@ CREATE TABLE IF NOT EXISTS Run(
     version INT,
     PRIMARY KEY (id)
 );
+
+DROP TABLE IF EXISTS Product;
+
+CREATE TABLE IF NOT EXISTS Product(
+    id INT NOT NULL,
+    name VARCHAR(250) NOT NULL,
+    description VARCHAR(256) NOT NULL,
+    price DECIMAL NOT NULL,
+    seller_id INT NOT NULL
+);

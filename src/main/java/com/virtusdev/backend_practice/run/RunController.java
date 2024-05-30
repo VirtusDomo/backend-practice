@@ -1,71 +1,65 @@
 package com.virtusdev.backend_practice.run;
 
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-import jakarta.validation.Valid;
-
-
-
-
-
 @RestController
 @RequestMapping("/api/runs")
-class RunController {
+public class RunController {
 
-    private final RunRepository runRepository;
+    private final RunService runService;
 
-    RunController(RunRepository runRepository) {
-        this.runRepository = runRepository;
+    @Autowired
+    public RunController(RunService runService) {
+        this.runService = runService;
     }
 
     @GetMapping
-    List<Run> findAll() {
-        return runRepository.findAll();
+    public ResponseEntity<List<Run>> findAll() {
+        List<Run> runs = runService.findAll();
+        return ResponseEntity.ok(runs);
     }
 
     @GetMapping("/{id}")
-    Run findById(@PathVariable Integer id) {
-        Optional<Run> run = runRepository.findById(id);
-        if(run.isEmpty()) {
+    public ResponseEntity<Run> findById(@PathVariable Integer id) {
+        Optional<Run> run = runService.findById(id);
+        if (run.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Run not found.");
         }
-        return run.get();
+        return ResponseEntity.ok(run.get());
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    void create(@Valid @RequestBody Run run) {
-        runRepository.create(run);
+    public ResponseEntity<Void> create(@Valid @RequestBody Run run) {
+        runService.create(run);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    void update(@Valid @RequestBody Run run, @PathVariable Integer id) {
-        runRepository.update(run,id);
+    public ResponseEntity<Void> update(@Valid @RequestBody Run run, @PathVariable Integer id) {
+        runService.update(run, id);
+        return ResponseEntity.noContent().build();
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    void delete(@PathVariable Integer id) {
-        runRepository.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        runService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
-    List<Run> findByLocation(@RequestParam String location) {
-        return runRepository.findByLocation(location);
+    @GetMapping("/location")
+    public ResponseEntity<List<Run>> findByLocation(@RequestParam String location) {
+        List<Run> runs = runService.findByLocation(location);
+        return ResponseEntity.ok(runs);
     }
 }

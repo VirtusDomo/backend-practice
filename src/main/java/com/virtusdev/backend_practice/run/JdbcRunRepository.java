@@ -1,5 +1,6 @@
  package com.virtusdev.backend_practice.run;
 
+ import org.springframework.beans.factory.annotation.Qualifier;
  import org.springframework.jdbc.core.simple.JdbcClient;
  import org.springframework.stereotype.Repository;
  import org.springframework.util.Assert;
@@ -8,6 +9,7 @@
  import java.util.Optional;
  
  @Repository
+ @Qualifier("jdbcRunRepository")
  public class JdbcRunRepository implements RunRepository {
  
      private final JdbcClient jdbcClient;

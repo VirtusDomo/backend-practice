@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Mouse",
+    "description": "A high precision wireless mouse with ergonomic design.",
+    "price": 29.99,
+    "sellerId": 101
+  },
+  {
+    "id": 2,
+    "name": "Bluetooth Keyboard",
+    "description": "A slim Bluetooth keyboard with rechargeable battery.",
+    "price": 49.99,
+    "sellerId": 102
+  },
+  {
+    "id": 3,
+    "name": "USB-C Hub",
+    "description": "A 7-in-1 USB-C hub with HDMI and Ethernet ports.",
+    "price": 39.99,
+    "sellerId": 103
+  },
+  {
+    "id": 4,
+    "name": "External SSD",
+    "description": "A 1TB portable external SSD with high transfer speeds.",
+    "price": 99.99,
+    "sellerId": 104
+  },
+  {
+    "id": 5,
+    "name": "Noise Cancelling Headphones",
+    "description": "Over-ear noise cancelling headphones with Bluetooth.",
+    "price": 199.99,
+    "sellerId": 105
+  },
+  {
+    "id": 6,
+    "name": "Smartwatch",
+    "description": "A waterproof smartwatch with heart rate monitor.",
+    "price": 79.99,
+    "sellerId": 106
+  },
+  {
+    "id": 7,
+    "name": "Portable Charger",
+    "description": "A 20000mAh portable charger with fast charging capability.",
+    "price": 49.99,
+    "sellerId": 107
+  },
+  {
+    "id": 8,
+    "name": "Wireless Earbuds",
+    "description": "True wireless earbuds with noise isolation and touch controls.",
+    "price": 59.99,
+    "sellerId": 108
+  },
+  {
+    "id": 9,
+    "name": "Smart Speaker",
+    "description": "A smart speaker with voice assistant and high-fidelity sound.",
+    "price": 129.99,
+    "sellerId": 109
+  },
+  {
+    "id": 10,
+    "name": "Laptop Stand",
+    "description": "An adjustable laptop stand with cooling fans.",
+    "price": 34.99,
+    "sellerId": 110
+  }
+]
