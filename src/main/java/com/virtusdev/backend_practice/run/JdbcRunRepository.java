@@ -1,17 +1,23 @@
  package com.virtusdev.backend_practice.run;
 
+ import jakarta.transaction.Transactional;
  import org.springframework.beans.factory.annotation.Qualifier;
  import org.springframework.jdbc.core.simple.JdbcClient;
  import org.springframework.stereotype.Repository;
  import org.springframework.util.Assert;
- 
+
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
  import java.util.List;
  import java.util.Optional;
  
  @Repository
  @Qualifier("jdbcRunRepository")
  public class JdbcRunRepository implements RunRepository {
- 
+
+     private static final Logger logger = LoggerFactory.getLogger(JdbcRunRepository.class);
+
+
      private final JdbcClient jdbcClient;
  
      public JdbcRunRepository(JdbcClient jdbcClient) {
@@ -38,12 +44,21 @@
  
          Assert.state(updated == 1, "Failed to create run " + run.title());
      }
- 
+
      public void update(Run run, Integer id) {
-         var updated = jdbcClient.sql("update run set title = ?, started_on = ?, completed_on = ?, miles = ?, location = ? where id = ?")
-                 .params(List.of(run.title(),run.startedOn(),run.completedOn(),run.miles(),run.location().toString(), id))
+         Assert.notNull(run, "Run must not be null");
+         Assert.notNull(id, "ID must not be null");
+
+         logger.info("Updating run with ID: {} and title: {}", id, run.title());
+
+         // Check if the run with the given ID exists
+
+         int updated = jdbcClient.sql("update run set title = ?, started_on = ?, completed_on = ?, miles = ?, location = ? where id = ?")
+                 .params(List.of(run.title(), run.startedOn(), run.completedOn(), run.miles(), run.location().toString(), id))
                  .update();
- 
+
+         logger.info("Rows updated: {}", updated);
+
          Assert.state(updated == 1, "Failed to update run " + run.title());
      }
  

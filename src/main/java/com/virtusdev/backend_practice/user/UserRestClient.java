@@ -7,7 +7,7 @@ import org.springframework.web.client.RestClient;
 import java.util.List;
 
 @Component
-public class UserRestClient {
+public class UserRestClient  implements UserHttpClient{
 
     private final RestClient restClient;
 
@@ -29,6 +29,29 @@ public class UserRestClient {
                 .uri("/users/{id}", id)
                 .retrieve()
                 .body(User.class);
+    }
+
+    public void create(User user){
+        restClient.post()
+                .uri("/users")
+                .body(user)
+                .retrieve()
+                .toBodilessEntity();
+    }
+
+    public void update(User user, Integer id){
+        restClient.put()
+                .uri("/users/{id}", id)
+                .body(user)
+                .retrieve()
+                .toEntity(User.class);
+    }
+
+    public void delete(Integer id){
+        restClient.delete()
+                .uri("/users/{id}", id)
+                .retrieve()
+                .toBodilessEntity();
     }
 
 }

@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS Run;
+--DROP TABLE IF EXISTS Run;
 
 CREATE TABLE IF NOT EXISTS Run(
     id INT NOT NULL,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS Run(
     PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS Product;
+--DROP TABLE IF EXISTS Product;
 
 CREATE TABLE IF NOT EXISTS Product(
     id INT NOT NULL,
@@ -19,4 +19,15 @@ CREATE TABLE IF NOT EXISTS Product(
     description VARCHAR(256) NOT NULL,
     price DECIMAL NOT NULL,
     seller_id INT NOT NULL
+);
+
+--DROP TABLE IF EXISTS Transaction;
+
+CREATE TABLE IF NOT EXISTS Transaction(
+    id INT NOT NULL,
+    buyer_id INT NOT NULL,
+    seller_id INT NOT NULL,
+    product_id INT NOT NULL,
+    amount DECIMAL NOT NULL,
+    transaction_date TIMESTAMP NOT NULL
 );
